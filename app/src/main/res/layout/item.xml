@@ -88,7 +88,7 @@
         android:layout_height="48dp"
         android:layout_marginEnd="16dp"
         android:background="@color/card_background_color"
-        android:src="@drawable/round_indeterminate_check_box_24"
+        android:src="@drawable/round_add_box_24"
         app:layout_constraintBottom_toBottomOf="@id/second_minus"
         app:layout_constraintEnd_toStartOf="@id/second_count"
         app:layout_constraintTop_toTopOf="@id/second_minus" />

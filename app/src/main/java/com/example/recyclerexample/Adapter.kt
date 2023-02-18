@@ -1,16 +1,27 @@
 package com.example.recyclerexample
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerexample.databinding.ItemBinding
 
-class Adapter(private var list: List<Model>) : RecyclerView.Adapter<Adapter.MyViewHolder>() {
+class Adapter(private var list: List<Model>, private val onClick: (Int) -> Unit) :
+    RecyclerView.Adapter<Adapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val holder = MyViewHolder(binding)
 
-        return MyViewHolder(binding)
+        binding.firstPlus.setOnClickListener {
+            onClick.invoke(holder.adapterPosition)
+        }
+
+        binding.secondMinus.setOnClickListener {
+
+        }
+
+        return holder
     }
 
     override fun getItemCount() = list.size
@@ -30,7 +41,7 @@ class Adapter(private var list: List<Model>) : RecyclerView.Adapter<Adapter.MyVi
             with(binding) {
                 firstCount.text = model.first.toString()
                 secondCount.text = model.second.toString()
-                position.text = "Position $adapterPosition"
+                position.text = "Position ${adapterPosition + 1}"
             }
         }
     }

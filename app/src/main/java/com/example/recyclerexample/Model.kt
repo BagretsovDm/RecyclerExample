@@ -1,3 +1,3 @@
 package com.example.recyclerexample
 
-data class Model(val first: Int = 1, val second: Int = 0)
+data class Model(var first: Int = 1, var second: Int = 0)

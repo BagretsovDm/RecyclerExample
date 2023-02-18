@@ -19,9 +19,27 @@ class ExampleViewModel : ViewModel() {
     val secondCount: LiveData<Int> = _secondCount
     val positionList: LiveData<MutableList<Model>> = _positionList
 
+    init {
+        updateFirstCount()
+    }
+
+    private fun updateFirstCount() {
+        var count = 0
+        positionList.value!!.forEach { count += it.first }
+        _firstCount.postValue(count)
+    }
+
+    fun updateList(position: Int) {
+        val currentList = _positionList.value!!
+        currentList[position].first++
+        _positionList.postValue(currentList)
+        updateFirstCount()
+    }
+
     fun addPosition() {
         val currentList = _positionList.value!!
         currentList.add(Model())
         _positionList.postValue(currentList)
+        updateFirstCount()
     }
 }

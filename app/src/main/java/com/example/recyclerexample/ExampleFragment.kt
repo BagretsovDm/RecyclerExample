@@ -13,7 +13,7 @@ class ExampleFragment : Fragment(R.layout.fragment_example) {
     private val viewModel: ExampleViewModel by viewModels()
 
     private val exampleAdapter by lazy {
-        viewModel.positionList.value?.toList()?.let { Adapter(it) }
+        viewModel.positionList.value?.toList()?.let { Adapter(it, ::onClickedFirstPlus) }
     }
 
     private var _binding: FragmentExampleBinding? = null
@@ -51,15 +51,20 @@ class ExampleFragment : Fragment(R.layout.fragment_example) {
 
     private fun setupObservers() {
         viewModel.firstCount.observe(viewLifecycleOwner) {
-            _binding?.firstResult?.text = it.toString()
+            _binding?.firstResult?.text = "First: $it"
         }
 
         viewModel.secondCount.observe(viewLifecycleOwner) {
-            _binding?.secondResult?.text = it.toString()
+            _binding?.secondResult?.text = "Second $it"
         }
 
         viewModel.positionList.observe(viewLifecycleOwner) {
             exampleAdapter?.setList(it.toList())
         }
+    }
+
+    private fun onClickedFirstPlus(position: Int) {
+        viewModel.updateList(position)
+        exampleAdapter?.notifyDataSetChanged()
     }
 }
