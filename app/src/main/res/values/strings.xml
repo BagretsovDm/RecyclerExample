@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RecyclerExample</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_position">Добавить</string>
+    <string name="title_text">Нажмите + чтобы добавить</string>
+    <string name="first">First</string>
+    <string name="second">Second</string>
 </resources>
